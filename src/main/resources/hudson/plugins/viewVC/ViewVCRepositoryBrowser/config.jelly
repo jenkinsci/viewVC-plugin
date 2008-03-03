@@ -1,0 +1,8 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <f:entry title="URL" help="/plugin/viewVC/help-url.html">
+   <f:textbox name="viewVC.url" value="${browser.url}"/>
+  </f:entry>
+  <f:entry title="Repository" help="/plugin/viewVC/help-location.html">
+   <f:textbox name="viewVC.location" value="${browser.location}"/>
+  </f:entry>
+</j:jelly>
