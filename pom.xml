@@ -4,13 +4,12 @@
   <groupId>hudson.plugins.viewVC</groupId>
   <artifactId>viewVC</artifactId>
   <packaging>hpi</packaging>
-  <version>1.1</version>
+  <version>1.2-SNAPSHOT</version>
 
   <scm>
     <connection>scm:cvs:pserver:guest@cvs.dev.java.net:/cvs:hudson/hudson/plugins/viewVC</connection>
     <developerConnection>scm:cvs:pserver:jazzjack@cvs.dev.java.net:/cvs:hudson/hudson/plugins/viewVC</developerConnection>
     <url>https://hudson.dev.java.net/source/browse/hudson/hudson/plugins/viewVC</url>
-    <tag>viewVC-1_1</tag>
   </scm>
                                           
   <dependencies>
