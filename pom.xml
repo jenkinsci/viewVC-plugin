@@ -11,7 +11,7 @@
           <repository>
             <id>java.net</id>
             <name>java.net</name>
-            <url>java-net:/maven2-repository/trunk/www/repository/</url>
+            <url>https://svn.dev.java.net/svn/maven2-repository/trunk/www/repository/</url>
           </repository>
           <!-- use the following if you ARE using a snapshot version. 
           <snapshotRepository>
