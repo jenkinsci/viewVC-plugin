@@ -6,6 +6,21 @@
   <packaging>hpi</packaging>
   <version>1.2-SNAPSHOT</version>
 
+    <distributionManagement>
+          <!-- use the following if you're not using a snapshot version. -->
+          <repository>
+            <id>java.net</id>
+            <name>java.net</name>
+            <url>java-net:/maven2-repository/trunk/www/repository/</url>
+          </repository>
+          <!-- use the following if you ARE using a snapshot version. 
+          <snapshotRepository>
+            <id>repo</id>
+            <name>Repository Name</name>
+            <url>scp://host/path/to/repo</url>
+          </snapshotRepository>-->
+        </distributionManagement>
+
   <scm>
     <connection>scm:cvs:pserver:guest@cvs.dev.java.net:/cvs:hudson/hudson/plugins/viewVC</connection>
     <developerConnection>scm:cvs:pserver:jazzjack@cvs.dev.java.net:/cvs:hudson/hudson/plugins/viewVC</developerConnection>
