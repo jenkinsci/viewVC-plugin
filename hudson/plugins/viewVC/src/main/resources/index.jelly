@@ -1,0 +1,4 @@
+<div>
+  This plugin integrates <a href="http://www.viewvc.org">ViewVC browser interface for CVS and Subversion</a> to Hudson. 
+  Entries in change logs will by hyperlinked to the specified files/diffs in ViewVC.
+</div>
