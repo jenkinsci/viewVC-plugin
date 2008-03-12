@@ -9,9 +9,5 @@
   
   <artifactId>viewVC</artifactId>
   <packaging>hpi</packaging>
-  <version>1.2</version>
-
-  <scm>
-    <tag>viewVC-1_2</tag>
-  </scm>
+  <version>1.3-SNAPSHOT</version>
 </project>
