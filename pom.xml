@@ -11,5 +11,5 @@
   <artifactId>viewVC</artifactId>
   <packaging>hpi</packaging>
   <version>1.3-SNAPSHOT</version>
-  <url>http://hudson.gotdns.com/wiki/display/HUDSON/ViewVC+Plugin</url>
+  <url>http://wiki.hudson-ci.org/display/HUDSON/ViewVC+Plugin</url>
 </project>
