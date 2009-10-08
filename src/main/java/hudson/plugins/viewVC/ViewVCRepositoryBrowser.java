@@ -1,19 +1,19 @@
 package hudson.plugins.viewVC;
 
+import hudson.Extension;
 import hudson.model.Descriptor;
-import hudson.model.AbstractProject;
-import hudson.scm.EditType;
 import hudson.scm.RepositoryBrowser;
 import hudson.scm.SubversionChangeLogSet.LogEntry;
 import hudson.scm.SubversionChangeLogSet.Path;
 import hudson.scm.SubversionRepositoryBrowser;
+import net.sf.json.JSONObject;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
-import java.text.MessageFormat;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 /**
  * {@link SubversionRepositoryBrowser} that produces links to the ViewVC Web Client for SVN
  *
@@ -54,12 +54,7 @@ public class ViewVCRepositoryBrowser extends SubversionRepositoryBrowser {
     	return new URL(url, String.format(CHANGE_SET_FORMAT, getLocation(), changeSet.getRevision()));
     }
 
-    public DescriptorImpl getDescriptor() {
-        return DESCRIPTOR;
-    }
-
-    public static final DescriptorImpl DESCRIPTOR = new DescriptorImpl();
-
+    @Extension
     public static final class DescriptorImpl extends Descriptor<RepositoryBrowser<?>> {
         public DescriptorImpl() {
             super(ViewVCRepositoryBrowser.class);
@@ -69,7 +64,8 @@ public class ViewVCRepositoryBrowser extends SubversionRepositoryBrowser {
             return "ViewVC";
         }
 
-        public ViewVCRepositoryBrowser newInstance(StaplerRequest req) throws FormException {
+        @Override
+        public ViewVCRepositoryBrowser newInstance(StaplerRequest req, JSONObject formData) throws FormException {
 		   return req.bindParameters(ViewVCRepositoryBrowser.class, "viewVC.");
         }
     }
