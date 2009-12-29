@@ -12,7 +12,13 @@
   <packaging>hpi</packaging>
   <version>1.3-SNAPSHOT</version>
   <url>http://wiki.hudson-ci.org/display/HUDSON/ViewVC+Plugin</url>
-  
+
+  <developers>
+    <developer>
+      <name>Mike Salnikov</name>
+    </developer>  
+  </developers>
+
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
