@@ -21,9 +21,9 @@ import java.net.URL;
  */
 public class ViewVCRepositoryBrowser extends SubversionRepositoryBrowser {
 
-	private static final String CHANGE_SET_FORMAT = "viewvc/?view=rev&root=%s&revision=%d";
-	private static final String DIFF_FORMAT = "viewvc/%s?root=%s&r1=%d&r2=%d&diff_format=h";
-	private static final String FILE_FORMAT = "viewvc/%s?root=%s&view=markup";
+	private static final String CHANGE_SET_FORMAT = "viewvc/%s/?view=rev&revision=%d";
+	private static final String DIFF_FORMAT = "viewvc/%s/%s?r1=%d&r2=%d&diff_format=h";
+	private static final String FILE_FORMAT = "viewvc/%s/%s?view=markup";
 
 	public final URL url;
 	private final String location;
@@ -35,18 +35,23 @@ public class ViewVCRepositoryBrowser extends SubversionRepositoryBrowser {
 	}
 
     public String getLocation() {
-        if(location==null)  return "/";
-        return location;
+        if(location == null || location.length() == 0) {
+          return "/";
+        } else if (location.endsWith("/")) {
+          return location.substring(0, location.length() - 1);
+        } else {
+          return location;
+        }
     }
 
     @Override
     public URL getDiffLink(Path path) throws IOException {
-		return new URL(url, String.format(DIFF_FORMAT, path.getValue(), getLocation(), path.getLogEntry().getRevision() - 1, path.getLogEntry().getRevision()));
+		return new URL(url, String.format(DIFF_FORMAT, getLocation(), path.getValue(), path.getLogEntry().getRevision() - 1, path.getLogEntry().getRevision()));
     }
 
     @Override
     public URL getFileLink(Path path) throws IOException {
-    	return new URL(url, String.format(FILE_FORMAT, path.getValue(), getLocation()));
+    	return new URL(url, String.format(FILE_FORMAT, getLocation(), path.getValue()));
     }
 
     @Override
