@@ -21,9 +21,9 @@ import java.net.URL;
  */
 public class ViewVCRepositoryBrowser extends SubversionRepositoryBrowser {
 
-	private static final String CHANGE_SET_FORMAT = "viewvc/?view=rev&root=%s&revision=%d";
-	private static final String DIFF_FORMAT = "viewvc/%s?root=%s&r1=%d&r2=%d&diff_format=h";
-	private static final String FILE_FORMAT = "viewvc/%s?root=%s&view=markup";
+	private static final String CHANGE_SET_FORMAT = "?view=rev&root=%s&revision=%d";
+	private static final String DIFF_FORMAT = "%s?root=%s&r1=%d&r2=%d&diff_format=h";
+	private static final String FILE_FORMAT = "%s?root=%s&view=markup";
 
 	public final URL url;
 	private final String location;
