@@ -59,6 +59,11 @@
       <name>Jesse Farinacci</name>
       <email>jieryn@gmail.com</email>
     </developer>
+    <developer>
+      <id>mirumpf</id>
+      <name>Michael Rumpf</name>
+      <email>michael@rumpfonline.de</email>
+    </developer>
   </developers>
 
   <scm>
@@ -66,6 +71,11 @@
     <developerConnection>scm:git:git@github.com:jenkinsci/viewVC-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/viewVC-plugin</url>
   </scm>
+
+  <issueManagement>
+    <system>JIRA</system>
+    <url>https://issues.jenkins-ci.org/browse/JENKINS/component/15586</url>
+  </issueManagement>
 
   <repositories>
     <repository>
