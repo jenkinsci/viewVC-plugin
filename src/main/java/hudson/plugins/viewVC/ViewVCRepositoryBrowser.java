@@ -21,17 +21,31 @@ import java.net.URL;
  */
 public class ViewVCRepositoryBrowser extends SubversionRepositoryBrowser {
 
-	private static final String CHANGE_SET_FORMAT = "viewvc/?view=rev&root=%s&revision=%d";
-	private static final String DIFF_FORMAT = "viewvc/%s?root=%s&r1=%d&r2=%d&diff_format=h";
-	private static final String FILE_FORMAT = "viewvc/%s?root=%s&view=markup";
+	private static final String CHANGE_SET_FORMAT = "?view=rev&root=%s&revision=%d";
+	private static final String DIFF_FORMAT = "%s?root=%s&r1=%d&r2=%d&diff_format=h";
+	private static final String FILE_FORMAT = "%s?root=%s&view=markup";
+	
+	private static final String DEFAULT_PATH = "viewvc/";
 
-	public final URL url;
+	/**
+	 * This old versions assumed that viewvc would always be in the URL.
+	 */
+	private final URL url;
+	
+	/** The root */
 	private final String location;
+
+	/**
+	 * So we can migrate from URLs before JENKINS-4043
+	 */
+	public boolean urlFixed = false; 	
+
 
     @DataBoundConstructor
     public ViewVCRepositoryBrowser(URL url, String location) throws MalformedURLException {
 		this.url = normalizeToEndWithSlash(url);
 		this.location = location;
+		this.urlFixed = true;
 	}
 
     public String getLocation() {
@@ -39,19 +53,27 @@ public class ViewVCRepositoryBrowser extends SubversionRepositoryBrowser {
         return location;
     }
 
+    public URL getUrl() {
+	try {
+	    return (urlFixed)?url:new URL(url, DEFAULT_PATH);
+	} catch (MalformedURLException e) {
+	    return url;
+	}
+    }
+
     @Override
     public URL getDiffLink(Path path) throws IOException {
-		return new URL(url, String.format(DIFF_FORMAT, path.getValue(), getLocation(), path.getLogEntry().getRevision() - 1, path.getLogEntry().getRevision()));
+		return new URL(getUrl(), String.format(DIFF_FORMAT, path.getValue(), getLocation(), path.getLogEntry().getRevision() - 1, path.getLogEntry().getRevision()));
     }
 
     @Override
     public URL getFileLink(Path path) throws IOException {
-    	return new URL(url, String.format(FILE_FORMAT, path.getValue(), getLocation()));
+    	return new URL(getUrl(), String.format(FILE_FORMAT, path.getValue(), getLocation()));
     }
 
     @Override
     public URL getChangeSetLink(LogEntry changeSet) throws IOException {
-    	return new URL(url, String.format(CHANGE_SET_FORMAT, getLocation(), changeSet.getRevision()));
+    	return new URL(getUrl(), String.format(CHANGE_SET_FORMAT, getLocation(), changeSet.getRevision()));
     }
 
     @Extension
@@ -60,6 +82,7 @@ public class ViewVCRepositoryBrowser extends SubversionRepositoryBrowser {
             super(ViewVCRepositoryBrowser.class);
         }
 
+        @Override
         public String getDisplayName() {
             return "ViewVC";
         }
