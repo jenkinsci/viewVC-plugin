@@ -63,12 +63,22 @@ public class ViewVCRepositoryBrowser extends SubversionRepositoryBrowser {
 
     @Override
     public URL getDiffLink(Path path) throws IOException {
-		return new URL(getUrl(), String.format(DIFF_FORMAT, path.getValue(), getLocation(), path.getLogEntry().getRevision() - 1, path.getLogEntry().getRevision()));
+        String baseUrl = getUrl().toString();
+        // eliminate trailing slash since the SVN path already has it
+        if (baseUrl.endsWith("/")) {
+            baseUrl = baseUrl.substring(0, baseUrl.length() - 1);
+        }
+		return new URL(baseUrl + String.format(DIFF_FORMAT, path.getValue(), getLocation(), path.getLogEntry().getRevision() - 1, path.getLogEntry().getRevision()));
     }
 
     @Override
     public URL getFileLink(Path path) throws IOException {
-    	return new URL(getUrl(), String.format(FILE_FORMAT, path.getValue(), getLocation()));
+        String baseUrl = getUrl().toString();
+        // eliminate trailing slash since the SVN path already has it
+        if (baseUrl.endsWith("/")) {
+            baseUrl = baseUrl.substring(0, baseUrl.length() - 1);
+        }
+    	return new URL(baseUrl + String.format(FILE_FORMAT, path.getValue(), getLocation()));
     }
 
     @Override
