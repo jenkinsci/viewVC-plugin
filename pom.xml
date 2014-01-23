@@ -35,7 +35,7 @@
   </parent>
 
   <artifactId>viewVC</artifactId>
-  <version>1.7</version>
+  <version>1.8-SNAPSHOT</version>
   <packaging>hpi</packaging>
   <name>ViewVC Plugin</name>
   <description>This plugin integrates the ViewVC web-viewer with Jenkins</description>
